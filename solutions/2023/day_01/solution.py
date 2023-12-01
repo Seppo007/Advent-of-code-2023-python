@@ -2,10 +2,12 @@
 
 # puzzle prompt: https://adventofcode.com/2023/day/1
 
-from ...base import TextSolution, answer
+from ...base import TextSolution
+
 
 def concat_two_strings_to_int(string1: str, string2: str) -> int:
     return int(string1 + string2)
+
 
 def get_concat_value_of_first_and_last_digit_in_(line: str) -> int:
     first = -1
@@ -33,7 +35,7 @@ def get_concat_value_of_first_and_last_numerical_in_(line: str) -> int:
             if first == -1:
                 first = number
             else:
-               second = number
+                second = number
 
     return concat_two_strings_to_int(first, second) \
         if str(second) != str('-1') \
@@ -66,6 +68,7 @@ def extract_numerical_or_digit_for_(string: str) -> str:
         return '0'
     else:
         return ''
+
 
 class Solution(TextSolution):
     _year = 2023
