@@ -14,6 +14,7 @@ def get_cube_combinations_list(game: str) -> list:
     cube_combinations_str = game.split(': ', )[1]
     return cube_combinations_str.split('; ')
 
+
 def get_minimum_cube_count_for_(game: str) -> dict:
     red = 0
     green = 0
@@ -32,6 +33,7 @@ def get_minimum_cube_count_for_(game: str) -> dict:
                 blue = blue if blue_cube_count <= blue else blue_cube_count
 
     return {'red': int(red), 'green': int(green), 'blue': int(blue)}
+
 
 def get_game_id_for_(game: str) -> int:
     return int((game.split(':')[0])[5:])
@@ -58,8 +60,10 @@ def get_game_id_if_no_combination_violates_ranges(game: str) -> int:
 
     return get_game_id_for_(game)
 
+
 def get_power_of_cube_set(minimum_cubes: dict) -> int:
     return minimum_cubes['red'] * minimum_cubes['green'] * minimum_cubes['blue']
+
 
 class Solution(TextSolution):
     _year = 2023
