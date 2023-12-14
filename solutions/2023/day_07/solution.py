@@ -48,7 +48,6 @@ def attach_rank_to(hands):
         ranked_hands.append(hand)
 
     total = 0
-    print(f'ranked_hands: {ranked_hands}')
     for index, hand in enumerate(ranked_hands):
         total += (index + 1) * hand[1]
 
@@ -116,10 +115,7 @@ class Solution(TextSolution):
             newEntry.append(hand)
             kinds[hand_type] = newEntry
 
-        # print(kinds)
-
-        total = attach_rank_to(kinds)
-        print(f'total is {total}')
+        return attach_rank_to(kinds)
 
     # @answer(1234)
     def part_2(self) -> int:
