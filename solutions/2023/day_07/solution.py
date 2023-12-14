@@ -23,6 +23,43 @@ def cards_comparator(hand1, hand2):
     return 0
 
 
+def is_full_house(counts):
+    return list(counts).count(2) == 1 and list(counts).count(3) == 1
+
+
+def is_two_pairs(counts):
+    return list(counts).count(2) == 2
+
+
+def get_type_for_(biggest_pair, counts):
+    if biggest_pair == 5:
+        return "five_of_a_kind"
+    elif biggest_pair == 4:
+        return "four_of_a_kind"
+    elif biggest_pair == 3:
+        if is_full_house(counts.values()):
+            return "full_house"
+        else:
+            return "three_of_a_kind"
+    elif biggest_pair == 2 and is_two_pairs(counts.values()):
+        return "two_pair"
+    elif biggest_pair == 2:
+        return "one_pair"
+    else:
+        return "high_card"
+
+
+def get_type(hand):
+    cards: str = hand[0]
+    counts: dict = {}
+    for card in cards:
+        counts[card] = cards.count(card)
+
+    biggest_pair = max(counts.values())
+
+    return get_type_for_(biggest_pair, counts)
+
+
 def attach_rank_to(hands):
     ranked_hands = []
 
@@ -52,39 +89,6 @@ def attach_rank_to(hands):
         total += (index + 1) * hand[1]
 
     return total
-
-
-def is_full_house(counts):
-    return list(counts).count(2) == 1 and list(counts).count(3) == 1
-
-
-def is_two_pairs(counts):
-    return list(counts).count(2) == 2
-
-
-def get_type(hand):
-    cards: str = hand[0]
-    counts: dict = {}
-    for card in cards:
-        counts[card] = cards.count(card)
-
-    biggest_pair = max(counts.values())
-
-    if biggest_pair == 5:
-        return "five_of_a_kind"
-    elif biggest_pair == 4:
-        return "four_of_a_kind"
-    elif biggest_pair == 3:
-        if is_full_house(counts.values()):
-            return "full_house"
-        else:
-            return "three_of_a_kind"
-    elif biggest_pair == 2 and is_two_pairs(counts.values()):
-        return "two_pair"
-    elif biggest_pair == 2:
-        return "one_pair"
-    else:
-        return "high_card"
 
 
 class Solution(TextSolution):
